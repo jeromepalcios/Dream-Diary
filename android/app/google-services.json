@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "685561116755",
+    "project_id": "dream-diary-mm9023",
+    "storage_bucket": "dream-diary-mm9023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685561116755:android:804cde6a5dd16e15622ea6",
+        "android_client_info": {
+          "package_name": "com.jeromepalcios.DreamDiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685561116755-9s0offckvtuuv383daqt1pgc9r5oku1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeromepalcios.DreamDiary",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "685561116755-e5gqeh0slcuk90ogattod3tcpld1tpeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSaRjT9iuGn-2sBj3cNHeDeY6fl7L6j6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685561116755-e5gqeh0slcuk90ogattod3tcpld1tpeb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685561116755-6c6nmqcpu413q38ah78jafjnp9q2vo5v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jeromepalcios.DreamDiary"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
