@@ -1,121 +1,13 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
-/// Start OpenAI Group Code
-
-function createOpenAIGroup() {
-  return {
-    baseUrl: `https://api.openai.com/v1`,
-    headers: {
-      Authorization: `Bearer sk-proj-etQXtoLAoAe4mxFEtarhT3BlbkFJC1m67UinFBLsHqVy71MW`,
-    },
-  };
-}
-
-async function _chatCall(context, ffVariables) {
-  var prompt = ffVariables["prompt"];
-  const openAIGroup = createOpenAIGroup();
-
-  var url = `${openAIGroup.baseUrl}/chat/completions`;
-  var headers = {
-    Authorization: `Bearer sk-proj-etQXtoLAoAe4mxFEtarhT3BlbkFJC1m67UinFBLsHqVy71MW`,
-  };
-  var params = {};
-  var ffApiRequestBody = `
-{
-  "model": "gpt-3.5-turbo",
-  "messages": [
-    {
-      "role": "user",
-      "content": "${prompt}"
-    }
-  ]
-}`;
-
-  return makeApiRequest({
-    method: "post",
-    url,
-    headers,
-    params,
-    body: createBody({
-      headers,
-      params,
-      body: ffApiRequestBody,
-      bodyType: "JSON",
-    }),
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-
-async function _speechToTextCall(context, ffVariables) {
-  var prompt = ffVariables["prompt"];
-  const openAIGroup = createOpenAIGroup();
-
-  var url = `${openAIGroup.baseUrl}/audio/transcriptions`;
-  var headers = {
-    Authorization: `Bearer sk-proj-etQXtoLAoAe4mxFEtarhT3BlbkFJC1m67UinFBLsHqVy71MW`,
-    "Content-Type": `multipart/form-data`,
-  };
-  var params = { file: prompt, model: `whisper-1` };
-  var ffApiRequestBody = undefined;
-
-  return makeApiRequest({
-    method: "post",
-    url,
-    headers,
-    params,
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-
-async function _imagesCall(context, ffVariables) {
-  var prompt = ffVariables["prompt"];
-  const openAIGroup = createOpenAIGroup();
-
-  var url = `${openAIGroup.baseUrl}/images/generations`;
-  var headers = {
-    Authorization: `Bearer sk-proj-etQXtoLAoAe4mxFEtarhT3BlbkFJC1m67UinFBLsHqVy71MW`,
-  };
-  var params = {};
-  var ffApiRequestBody = `
-{
-  "model": "dall-e-3",
-  "prompt": "${prompt}",
-  "n": 1,
-  "size": "1024x1024"
-}`;
-
-  return makeApiRequest({
-    method: "post",
-    url,
-    headers,
-    params,
-    body: createBody({
-      headers,
-      params,
-      body: ffApiRequestBody,
-      bodyType: "JSON",
-    }),
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-
-/// End OpenAI Group Code
-
 /// Helper functions to route to the appropriate API Call.
 
 async function makeApiCall(context, data) {
   var callName = data["callName"] || "";
   var variables = data["variables"] || {};
 
-  const callMap = {
-    ChatCall: _chatCall,
-    SpeechToTextCall: _speechToTextCall,
-    ImagesCall: _imagesCall,
-  };
+  const callMap = {};
 
   if (!(callName in callMap)) {
     return {

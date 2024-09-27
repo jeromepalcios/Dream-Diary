@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/backend/gemini/gemini.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
@@ -501,13 +500,6 @@ class _AddWidgetState extends State<AddWidget> {
                         '\\n',
                         'r\'\\n\'',
                       );
-                      await geminiGenerateText(
-                        context,
-                        'Reformule la description suivante qui sera utilisé par la generation d\'une image. Si plusieurs scènes sont identifiées, il faut les separé pour que cela représent une bande dessinée. Pour finir traduis la nouvelle description en anglais :${_model.descFGuuillemet}\\n Obligation : Je veux uniquement la reponse en Anglais et que ce soit divisé en scene. Il faut detaillé au maxaimum to en gardant la demande initiale',
-                      ).then((generatedText) {
-                        safeSetState(() => _model.descEnglish = generatedText);
-                      });
-
                       _model.descFEnglishLine = await actions.replace(
                         _model.descEnglish!,
                         '\\n',
